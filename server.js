@@ -13,8 +13,8 @@ app.set("view engine", "ejs"); // подключение шаблонизато�
 
 const PORT = 4455;
 
-const connection = mysql.createConnection({
-  // подключение к БД
+const connection = mysql.createConnection({ // подключение к БД
+  
   host: "127.0.0.1",
   user: "root",
   database: "offliner",
@@ -28,8 +28,8 @@ connection.connect((err) => {
   }
 });
 
-connection.execute("SELECT * FROM users", (err, results) => {
-  // запрос для вывода содержимого БД в консоль
+connection.execute("SELECT * FROM users", (err, results) => { // запрос для вывода содержимого БД в консоль
+  
 
   console.log(results);
 });
@@ -37,8 +37,8 @@ connection.execute("SELECT * FROM users", (err, results) => {
 const createPath = (page) =>
   path.resolve(__dirname, "ejs-pages", `${page}.ejs`); // создание абсолютного пути (ссылка)
 
-app.listen(PORT, (error) => {
-  // прослушка порта
+app.listen(PORT, (error) => { // прослушка порта
+  
   if (error) {
     console.log(error);
   } else {
@@ -54,8 +54,8 @@ app.use(
 );
 
 app.use(
-  express.urlencoded({
-    // ПО для бодипарсера
+  express.urlencoded({ // ПО для бодипарсера
+    
     extended: false,
   })
 );
@@ -70,8 +70,8 @@ app.get("/login", function (req, res) {
   });
 });
 
-app.get("/registration", function (req, res) {
-  //  возврат формы для добавления данных
+app.get("/registration", function (req, res) { //  возврат формы для добавления данных
+ 
   res.render(createPath("reg"));
 });
 
@@ -81,8 +81,8 @@ app.post("/registration", urlencodedParser, function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  if (email === "" || password === "") {
-    // проверка на заполненность
+  if (email === "" || password === "") {// проверка на заполненность
+    
     res.send("He все поля заполнены");
   } else {
     connection.query(
@@ -91,8 +91,8 @@ app.post("/registration", urlencodedParser, function (req, res) {
       function (err, data) {
         if (err) return console.log(err);
 
-        if (data.length > 0) {
-          // проверка на наличие аккаунта в базе данных
+        if (data.length > 0) { // проверка на наличие аккаунта в базе данных
+         
           res.send("Этот email уже зарегистрирован");
         } else {
           connection.query(
@@ -114,12 +114,12 @@ app.get("/", (req, res) => {
 
   if (user_id) {
     connection.query(
-      "SELECT * FROM users WHERE id = ?",
+      "SELECT * FROM users WHERE id = ?", // Запрос данных из таблицы cart
       [user_id],
       (err, rows) => {
         if (err) throw err;
 
-        // Запрос данных из таблицы cart
+        
         const query =
           "SELECT smartphone_id FROM cart WHERE user_id=" + user_id + ";";
         connection.query(query, function (err, result) {
@@ -131,8 +131,8 @@ app.get("/", (req, res) => {
             ");";
           connection.query(smartphones_query, function (err, result) {
             const smartphones = result;
-            res.render(createPath("home"), {
-              // вывод информации о пользователе и списка товаров на страницу home
+            res.render(createPath("home"), { // вывод информации о пользователе и списка товаров на страницу home
+              
               user_id: rows[0].id,
               user_email: rows[0].email,
               smartphones: smartphones,
@@ -151,8 +151,8 @@ app.get("/cartErr", (req, res) => {
   res.render(createPath("cartErr"));
 });
 
-app.post("/login", (req, res) => {
-  // обработка запроса на авторизацию
+app.post("/login", (req, res) => { // обработка запроса на авторизацию
+ 
   const email = req.body.emailLog;
   const password = req.body.passwordLog;
 
@@ -163,8 +163,8 @@ app.post("/login", (req, res) => {
       if (err) throw err;
 
       if (rows.length > 0) {
-        if (email === "admin" && password === "admin") {
-          // проверка, что пользователь - админ
+        if (email === "admin" && password === "admin") { // проверка, что пользователь - админ
+         
           req.session.user_id = rows[0].id;
           req.session.user_email = rows[0].email;
           res.redirect("/admin");
@@ -193,8 +193,8 @@ app.get("/smartphones", function (req, res) {
   });
 });
 
-app.get("/smartPhone/:id", (req, res) => {
-  // страница отдельного смартфона, запрос по id
+app.get("/smartPhone/:id", (req, res) => { // страница отдельного смартфона, запрос по id
+  
   const smartPhoneId = req.params.id;
   connection.query(
     "SELECT * FROM smartPhones WHERE id=?",
@@ -217,8 +217,8 @@ app.get("/smartPhone/:id", (req, res) => {
   );
 });
 
-app.post("/smartPhone/:id/addComment", (req, res) => {
-  // обработка отправки формы добавления комментария
+app.post("/smartPhone/:id/addComment", (req, res) => { // обработка отправки формы добавления комментария
+  
   const userId = req.session.user_id;
   const smartPhoneId = req.params.id;
   const userEmail = req.session.user_email;
@@ -238,20 +238,20 @@ app.post("/smartPhone/:id/addComment", (req, res) => {
   }
 });
 
-app.post("/smartPhone/:id/deleteComment/:commentId", (req, res) => {
-  // Обработка запроса на удаление комментария
+app.post("/smartPhone/:id/deleteComment/:commentId", (req, res) => { // Обработка запроса на удаление комментария
+ 
 
   const smartPhoneId = req.params.id;
   const commentId = req.params.commentId;
   const userEmail = req.session.user_email;
 
-  if (userEmail === "admin") {
-    // проверка, что пользователь - админ
+  if (userEmail === "admin") { // проверка, что пользователь - админ
+    
     connection.query(
       "DELETE FROM comments WHERE id=?",
       [commentId],
-      (err, result) => {
-        // сдаление комментария с заданным идентификатором
+      (err, result) => { // сдаление комментария с заданным идентификатором
+       
         if (err) return console.log(err);
         res.redirect(`/smartPhone/${smartPhoneId}`);
       }
@@ -260,19 +260,19 @@ app.post("/smartPhone/:id/deleteComment/:commentId", (req, res) => {
     connection.query(
       "SELECT * FROM comments WHERE id=? AND userEmail=?",
       [commentId, userEmail],
-      (err, result) => {
-        // проверка наличия комментария с заданным идентификатором и принадлежности его пользователю
+      (err, result) => { // проверка наличия комментария с заданным идентификатором и принадлежности его пользователю
+        
         if (err) return console.log(err);
 
-        if (result.length === 0) {
-          // если комментарий не найден или не принадлежит пользователю- err
+        if (result.length === 0) { // если комментарий не найден или не принадлежит пользователю- err
+          
           res.status(403).send("access error");
         } else {
           connection.query(
             "DELETE FROM comments WHERE id=?",
             [commentId],
-            (err, result) => {
-              // удаление комментария с заданным идентификатором
+            (err, result) => { // удаление комментария с заданным идентификатором
+             
               if (err) return console.log(err);
               res.redirect(`/smartPhone/${smartPhoneId}`);
             }
@@ -290,8 +290,8 @@ app.get("/logout", (req, res) => {
   res.redirect("/category");
 });
 
-app.get("/priceASC", (req, res) => {
-  // сортировка с минимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру ASC
+app.get("/priceASC", (req, res) => { // сортировка с минимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру ASC
+  
 
   const title = "Sort";
 
@@ -306,8 +306,8 @@ app.get("/priceASC", (req, res) => {
   );
 });
 
-app.get("/priceDESC", (req, res) => {
-  // сортировка с максимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру DESC
+app.get("/priceDESC", (req, res) => { // сортировка с максимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру DESC
+  
 
   const title = "Sort";
 
@@ -322,8 +322,8 @@ app.get("/priceDESC", (req, res) => {
   );
 });
 
-app.get("/dateDESC", (req, res) => {
-  // сортировка с минимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру ASC
+app.get("/dateDESC", (req, res) => { // сортировка с минимальной цены, запрос к БД, где обращаюсь к столбцу price и сортирую благодаря параметру ASC
+  
 
   const title = "Sort";
 
@@ -344,11 +344,11 @@ app.post("/filter", (req, res) => {
   const selectedSystem = req.body.system;
   let filterName = ""; // запрос с динамически формируемым условием
 
-  if (!selectedName && !selectedDate && !selectedSystem) {
-    // если ничего не выбрано, перезагружаем страницу
+  if (!selectedName && !selectedDate && !selectedSystem) { // если ничего не выбрано, перезагружаем страницу
+   
     return res.redirect("/smartphones");
-  } // вариации фильтраций
-  if (
+  }
+  if ( // вариации фильтраций
     selectedName &&
     selectedName.length > 0 &&
     (!selectedDate || selectedDate.length === 0) &&
@@ -435,8 +435,8 @@ app.post("/filter", (req, res) => {
       ")";
   }
 
-  // выполнение запроса к базе данных и отправка результата пользователю
-  connection.query(filterName, (error, results) => {
+  
+  connection.query(filterName, (error, results) => { // выполнение запроса к базе данных и отправка результата пользователю
     if (error) throw error;
     res.render(createPath("filter"), {
       smartPhones: results,
@@ -460,14 +460,14 @@ app.get("/filter/:name", function (req, res) {
 
 app.use(express.static(__dirname)); // путь к папке с изображениями
 app.use(
-  multer({
-    // путь загрузки изображения
+  multer({ // путь загрузки изображения
+    
     dest: "images",
   }).single("photo")
 );
 
-app.post("/admin", urlencodedParser, (req, res) => {
-  // создание поста, получаю данные из форм, обращаюсь к бд, где вставляю в таблицу введенные ранее значения
+app.post("/admin", urlencodedParser, (req, res) => { // создание поста, получаю данные из форм, обращаюсь к бд, где вставляю в таблицу введенные ранее значения
+  
 
   if (!req.body) return res.sendStatus(400);
   const name = req.body.name;
@@ -488,8 +488,8 @@ app.post("/admin", urlencodedParser, (req, res) => {
   );
 });
 
-app.get("/admin", (req, res) => {
-  // запрос к БД для вывода данных на страницу /admin
+app.get("/admin", (req, res) => { // запрос к БД для вывода данных на страницу /admin
+  
 
   const title = "admin";
   if (req.session.user_email != "admin") {
@@ -511,8 +511,8 @@ app.get("/admin", (req, res) => {
   }
 });
 
-app.post("/smartPhones/:id", (req, res) => {
-  // удаление поста. получаю id, обращаюсь к БД, где удаляю пост с заданным id
+app.post("/smartPhones/:id", (req, res) => { // удаление поста. получаю id, обращаюсь к БД, где удаляю пост с заданным id
+  
 
   const id = req.params.id;
   connection.query("DELETE FROM smartPhones WHERE id=?", [id], (err, data) => {
@@ -521,8 +521,8 @@ app.post("/smartPhones/:id", (req, res) => {
   });
 });
 
-app.post("/users/:id", (req, res) => {
-  // удаление поста. получаю id, обращаюсь к БД, где удаляю пост с заданным id
+app.post("/users/:id", (req, res) => { // удаление поста. получаю id, обращаюсь к БД, где удаляю пост с заданным id
+  
 
   const id = req.params.id;
   connection.query("DELETE FROM users WHERE id=?", [id], (err, data) => {
@@ -535,8 +535,8 @@ app.post("/add-to-cart/:id", function (req, res) {
   const smartphoneId = req.params.id;
   const userId = req.session.user_id;
 
-  if (!userId) {
-    // если пользователь не зарегистрирован
+  if (!userId) { // если пользователь не зарегистрирован
+    
     res.redirect("/login");
   } else {
     connection.query(
@@ -569,8 +569,8 @@ app.post("/cart/delete", (req, res) => {
   }
 });
 
-app.use((req, res) => {
-  // ERROR 404
+app.use((req, res) => { // ERROR 404
+  
   const title = "ERROR 404";
   res.render(createPath("notFind"), {
     title,
