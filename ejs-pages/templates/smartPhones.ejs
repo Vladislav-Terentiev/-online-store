@@ -1,0 +1,22 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/smartPhones.css" />
+</head>
+<div class="blocks">
+  <h2>Мобильные телефоны:</h2>
+  <% if(smartPhones.length){ %> <%smartPhones.forEach(({id,
+  name,model,price,img,description})=>{ %>
+  <form method="post" action="/add-to-cart/<%=id%>">
+    <a href="/smartPhone/<%= id%>">
+      <div>
+        <img src="/images/<%= img%>" alt="" />
+        <%= name %> <%= model %>
+      </div>
+    </a>
+    <p><%= description%></p>
+    <p name="price"><%= price %>$</p>
+
+    <input type="submit" class="button7" value="Добавить в корзину" />
+  </form>
+
+  <% }) %> <% } %>
+</div>

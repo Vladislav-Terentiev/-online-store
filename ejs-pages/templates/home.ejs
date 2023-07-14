@@ -1,0 +1,38 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/home.css" />
+</head>
+<div class="blocks">
+  <% if (smartphones) { %>
+
+  <h1>Ваш заказ:</h1>
+  <ul>
+    <% smartphones.forEach(function(smartphone) { %> <% if
+    (cart.indexOf(smartphone.id) !==-1) { %>
+    <a href="/smartPhone/<%= smartphone.id%>">
+      <div>
+        <img src="/images/<%= smartphone.img%>" alt="" />
+        <%= smartphone.name %> <%= smartphone.model %>
+      </div>
+    </a>
+    <p><%= smartphone.description%></p>
+    <p name="price"><%= smartphone.price %>$</p>
+
+    <form method="post" action="/cart/delete">
+      <input type="hidden" name="smartphone_id" value="<%= smartphone.id %>" />
+      <input type="submit" class="button7" value="Удалить товар" />
+    </form>
+    <% } %> <% }); %>
+  </ul>
+  <% } else { %>
+  <p>Ваша корзина пуста</p>
+  <% } %>
+  <br />
+  <div>
+    <input
+      onclick="window.location.href = '/logout';"
+      class="button7"
+      id="logout"
+      value="Выход"
+    />
+  </div>
+</div>

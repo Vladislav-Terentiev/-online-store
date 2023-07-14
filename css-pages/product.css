@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.container img {
+  height: 200px;
+  width: 150px;
+  margin-right: 20px;
+}
+
+.container {
+  font-family: "Open Sans", sans-serif;
+  color: #303030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.links a {
+  text-decoration: none;
+  color: #303030;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5vh;
+}
+
+.links a:hover {
+  color: #1176ff;
+  text-decoration: underline;
+}
+
+input.button7 {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 1em calc(0.8em + 3px);
+  border-radius: 3px;
+
+  background: rgb(17, 118, 255);
+  box-shadow: 0 -3px rgb(8, 118, 255) inset;
+  transition: 0.2s;
+  border: none;
+}
+.name {
+  text-align: center;
+}
+
+input.button7:hover {
+  background: red;
+  cursor: pointer;
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}
+
+input.button7:active {
+  background: rgb(255, 0, 0);
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}
+
+.comment {
+  display: flex;
+}
+
+.comment form {
+  padding-left: 3vh;
+}

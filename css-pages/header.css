@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+header {
+  font-family: Jura;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #ebe9e9;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header span {
+  font-family: "Dancing Script", cursive;
+  color: #1176ff;
+}
+
+.logo {
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  vertical-align: bottom;
+  color: red;
+  cursor: pointer;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.logo a:visited {
+  color: red;
+}
+
+.logo img {
+  display: inline-block;
+  vertical-align: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li + li {
+  margin-left: 20px;
+}
+
+nav a {
+  height: 35px;
+  width: 35px;
+  display: block;
+  padding: 5px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  transition: 0.3s ease;
+}
+
+.cart {
+  background: url("/logotips/cart.png") no-repeat;
+  background-position: center;
+}
+
+.login {
+  background: url("/logotips/login.png") no-repeat;
+  background-position: center;
+}
+
+.cart:hover {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: url("/logotips/cartHover.png") no-repeat;
+  background-position: center;
+}
+
+.login:hover {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: url("/logotips/loginHover.png") no-repeat;
+  background-position: center;
+}

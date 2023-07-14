@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FILTER</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+    body {
+      font-family: "Open Sans", sans-serif;
+    }
+  </style>
+  <body>
+    <%- include('./templates/header.ejs')%> <% if (smartPhones.length> 0) { %>
+    <div class="container">
+      <%- include('./templates/filter.ejs')%> <%-
+      include('./templates/smartPhones.ejs')%>
+    </div>
+    <% } else { %>
+    <h4>По данному запросу ничего найдено.</h4>
+    <h5><a href="/category">Вернуться на главную страницу</a></h5>
+    <% } %>
+  </body>
+</html>

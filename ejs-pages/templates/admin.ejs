@@ -1,0 +1,113 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/admin.css" />
+</head>
+
+<div class="add">
+  <div class="addForm">
+    <form method="post" action="/admin" enctype="multipart/form-data">
+      <label
+        >Name
+        <input
+          type="text"
+          name="name"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >Model
+        <input
+          type="text"
+          name="model"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >Date
+        <input
+          type="text"
+          name="date"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >System
+        <input
+          type="text"
+          name="system"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >Description
+        <input
+          type="text"
+          name="description"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >Spesc
+        <input
+          type="text"
+          name="specs"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+
+      <label
+        >Price
+        <input
+          type="text"
+          name="price"
+          onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';"
+        />
+      </label>
+      <label
+        >Photo
+        <input type="file" name="photo" />
+      </label>
+
+      <button class="button7" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<% if(smartPhones.length){ %> <%smartPhones.forEach(({id,
+name,model,price,img,description,date,system})=>{ %>
+<div class="blocks">
+  <a href="/smartPhone/<%= id%>">
+    <div>
+      <img src="/images/<%= img%>" alt="" />
+      <br />
+      <%= name %> <%= model %>
+    </div>
+  </a>
+  <p><%= description%></p>
+  <p name="price"><%= price %>$</p>
+
+  <form action="smartPhones/<%= id%>" method="POST" style="display: inline">
+    <button class="button7" type="submit">Delete</button>
+  </form>
+</div>
+
+<% }) %> <% } %>
+<h4>Пользователи:</h4>
+<%users.forEach(({id,email})=>{ %>
+
+<div class="users">
+  <form action="users/<%= id%>" method="POST" style="display: inline">
+    <p><%=email%></p>
+
+    <button class="button7" type="submit">Delete</button>
+  </form>
+</div>
+<% }) %>
+
+<button class="button7" onclick="window.location.href = '/logout';">
+  Log Out
+</button>

@@ -1,0 +1,48 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #cccccc;
+  background-color: #ebe9e9;
+  padding-top: 50px;
+  min-height: 100vh;
+  min-width: 20vh;
+}
+
+.sideBar p {
+  font-weight: bold;
+}
+
+.brand,
+.system,
+.date {
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  display: flex;
+}
+
+button.button7 {
+  font-weight: 700;
+
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 1em calc(0.8em + 3px);
+  border-radius: 3px;
+
+  background: rgb(17, 118, 255);
+  box-shadow: 0 -3px rgb(8, 118, 255) inset;
+  transition: 0.2s;
+  border: none;
+}
+
+button.button7:hover {
+  background: red;
+  cursor: pointer;
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}
+
+button.button7:active {
+  background: rgb(255, 0, 0);
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}

@@ -1,0 +1,50 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/sort.css" />
+</head>
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Сначала популярные ▾</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/smartphones">популярные</a>
+    <a href="/priceASC">дешевые</a>
+    <a href="/priceDESC">дорогие</a>
+    <a href="/dateDESC">новые</a>
+  </div>
+</div>
+<script>
+  // переключение меню сортировки при нажатии
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // скрытие меню при клике по странице
+  window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+  };
+  // текст кнопок
+  var links = document.querySelectorAll(".dropdown-content a");
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", function () {
+      var text = this.innerText;
+      document.querySelector(".dropbtn").innerText = "Сначала " + text;
+    });
+  }
+  // текст кнопок при выборе сортировки и загрузки страницы
+  if (window.location.href.indexOf("/smartphones") > -1) {
+    document.querySelector(".dropbtn").innerText = "Сначала популярные ▾";
+  } else if (window.location.href.indexOf("/priceASC") > -1) {
+    document.querySelector(".dropbtn").innerText = "Сначала дешевые ▾";
+  } else if (window.location.href.indexOf("/priceDESC") > -1) {
+    document.querySelector(".dropbtn").innerText = "Сначала дорогие ▾";
+  } else if (window.location.href.indexOf("/dateDESC") > -1) {
+    document.querySelector(".dropbtn").innerText = "Сначала новые ▾";
+  }
+</script>

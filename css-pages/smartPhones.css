@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.container {
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  margin-top: 30px;
+  border-top: 1px solid #cccccc;
+  color: #303030;
+}
+
+.blocks {
+  margin-left: 75px;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  display: flex;
+  color: black;
+}
+
+.blocks form {
+  border-bottom: 1px solid #cccccc;
+  min-width: 100%;
+  padding-top: 7vh;
+}
+
+.blocks img {
+  float: left;
+  height: 200px;
+  width: 150px;
+  margin-right: 20px;
+}
+
+.blocks a {
+  text-decoration: none;
+  color: #303030;
+}
+
+.blocks a:visited {
+  color: #303030;
+}
+
+input.button7 {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 1em calc(0.8em + 3px);
+  border-radius: 3px;
+
+  background: rgb(15, 115, 255);
+  box-shadow: 0 -3px rgb(8, 118, 255) inset;
+  transition: 0.2s;
+  border: none;
+}
+
+input.button7:hover {
+  background: red;
+  cursor: pointer;
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}
+
+input.button7:active {
+  background: rgb(255, 0, 0);
+  box-shadow: 0 -3px rgb(244, 0, 0) inset;
+}
+.add {
+  display: flex;
+}
+.addForm {
+  flex-wrap: nowrap;
+}

@@ -1,0 +1,72 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/product.css" />
+</head>
+
+<% for (let obj of smartPhones){ let name=obj.name; let model=obj.model; let
+price=obj.price; let description=obj.description; let img=obj.img; let
+specs=obj.specs; let id=obj.id; %> <% if(smartPhones.length){ %> <%
+smartPhones.forEach(({id, name,model,price,img})=>{ %>
+<p class="links">
+  <a href="/category">Категории</a> → <a href="/smartphones">Смартфоны</a> →
+  <a href="/filter/<%=name%>"> <%= name %> </a>
+</p>
+
+<div class="container">
+  <div class="name">
+    <h1><%= name %> <%= model %></h1>
+  </div>
+
+  <div><img class="logo" src="/images/<%= img%>" alt="" /></div>
+
+  <div class="name">
+    <h3><%= description %></h3>
+  </div>
+  <div class="name">
+    <p><%= specs %></p>
+  </div>
+  <div class="name">
+    <h1><%= price %>$</h1>
+  </div>
+  <div>
+    <form method="post" action="/add-to-cart/<%=id%>">
+      <input type="submit" class="button7" value="Добавить в корзину" />
+    </form>
+  </div>
+
+  <br />
+
+  <!-- Форма добавления комментария -->
+  <div>
+    <h3>Оставить отзыв:</h3>
+    <form method="POST" action="/smartPhone/<%=id%>/addComment">
+      <textarea name="commentText" rows="5" cols="40" required></textarea><br />
+      <input type="submit" class="button7" value="Подтвердить" />
+    </form>
+  </div>
+  <br />
+  <!-- Отображение комментариев -->
+  <div>
+    <h3>Отзывы:</h3>
+
+    <% comments.forEach(comment=> { %>
+    <div class="comment">
+      <div>
+        <p><%= comment.userEmail %>: <%= comment.commentText %></p>
+      </div>
+      <div>
+        <% if (session.user_email==='admin' ||
+        comment.userEmail===session.user_email) { %>
+        <form
+          method="post"
+          action="/smartPhone/<%=id %>/deleteComment/<%= comment.id %>"
+        >
+          <input type="submit" class="button7" value="Удалить" />
+        </form>
+        <% } %>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>
+
+<% }) %> <% } %> <% } %>

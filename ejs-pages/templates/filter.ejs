@@ -1,0 +1,47 @@
+<head>
+  <link rel="stylesheet" href="/css-pages/filter.css" />
+</head>
+<div class="sideBar">
+  <form method="post" action="/filter">
+    <div class="brand">
+      <p>Бренд:</p>
+      <label
+        ><input type="checkbox" name="smartphone" value="Apple" /> Apple</label
+      >
+      <label
+        ><input type="checkbox" name="smartphone" value="Google" />
+        Google</label
+      >
+      <label
+        ><input type="checkbox" name="smartphone" value="Samsung" />
+        Samsung</label
+      >
+    </div>
+    <br />
+
+    <div class="system">
+      <p>Операционная <br />система:</p>
+      <label><input type="checkbox" name="system" value="iOS" /> iOS</label>
+      <label
+        ><input type="checkbox" name="system" value="Android" /> Android</label
+      >
+    </div>
+
+    <div class="date">
+      <p>Дата выхода:</p>
+      <label
+        ><input type="checkbox" name="date" value="2023-01-01" /> 2023</label
+      >
+      <label
+        ><input type="checkbox" name="date" value="2022-01-01" /> 2022</label
+      >
+      <label
+        ><input type="checkbox" name="date" value="2021-01-01" /> 2021</label
+      >
+    </div>
+
+    <br />
+
+    <button class="button7" type="submit">Фильтровать</button>
+  </form>
+</div>

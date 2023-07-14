@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+    body {
+      color: #303030;
+      font-family: "Open Sans", sans-serif;
+    }
+  </style>
+  <body>
+    <%- include('./templates/header.ejs')%>
+
+    <p>Ваша корзина пуста</p>
+    <p>Перейдите в каталог и добавьте товары.</p>
+    <p>
+      Наполняли корзину ранее? <a href="/login">Войдите</a> на сайт, и выбранные
+      вами товары появятся.
+    </p>
+  </body>
+</html>
